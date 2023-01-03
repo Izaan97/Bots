@@ -1,0 +1,18 @@
+import requests
+import bs4
+
+url="https://192-53-168-37.ip.linodeusercontent.com/?p=1"
+page=requests.get(url)
+soup=bs4.BeautifulSoup(page.content, "html.parser")
+hello_world=soup.find(string="Hello world!")
+hello_world_parent=hello_world.findParent()
+
+comment_score_content_Parent=soup.find("div", {"class":"comment-content"}) 
+
+comment_content=comment_score_content_Parent.find("p").get_text().strip()
+
+
+
+print(comment_content)
+
+#This scrapes comments from my website
